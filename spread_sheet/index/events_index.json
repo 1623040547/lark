@@ -1,0 +1,48 @@
+{
+  "sheet_name": "version",
+  "data_head": {
+    "event_name": "事件名",
+    "event_desc": "事件描述",
+    "param_list": {
+      "param_name": "参数名",
+      "param_type": "参数数据类型",
+      "param_desc": "参数描述",
+      "param_must_write": "是否必填",
+      "param_check": "参数类型检查"
+    },
+    "event_trigger": "事件触发时机",
+    "locations": "事件触发位置",
+    "panels": "打点平台",
+    "event_plate": "功能模块"
+  },
+  "unit_style": {
+    "combine": [
+      "event_name",
+      "event_desc",
+      "locations",
+      "panels"
+    ],
+    "pull_list": [
+      "param_type",
+      "panels",
+      "locations",
+      "param_must_write"
+    ],
+    "cite": {
+      "param_name": [
+        "@param_index:param_name",
+        "@union_param_index:param_name"
+      ]
+    } 
+  },
+  "global_style": {
+    "cross_color": true,
+    "froze_row": true,
+    "combine": [
+      "event_plate"
+    ],
+    "freeze": [
+      "0.0.0"
+    ]
+  }
+}

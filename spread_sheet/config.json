@@ -1,0 +1,36 @@
+{
+  "app_id": "",
+  "app_secret": "",
+  "index_path": "./index",
+  "data_path": "./data",
+  "file_suffix": ".json",
+  "table": [
+    {
+      "table_id": "",
+      "name": "my_healer",
+      "loads": {
+        "param_index": "params",
+        "union_param_index": "union_params",
+        "events_index": "events"
+      }
+    },
+    {
+      "table_id": "",
+      "name": "spiritrue",
+      "loads": {
+        "param_index": "params",
+        "union_param_index": "union_params",
+        "events_index": "events"
+      }
+    },
+    {
+      "table_id": "",
+      "name": "diviner",
+      "loads": {
+        "param_index": "params",
+        "union_param_index": "union_params",
+        "events_index": "events"
+      }
+    }
+  ]
+}
