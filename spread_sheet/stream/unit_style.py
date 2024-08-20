@@ -11,18 +11,31 @@ class CiteColumn:
     column: int
     matrix: list
 
-    def link_style(self, data):
+    def link_style(self, data, text):
+        """
+        :param data: 用于比较是否绑定超链接的数据
+        :param text: 用于绑定超链接的文本
+        :return: 超链接样式
+        """
         if data is None or str(data) == "":
             return None
+        sub_target = None
         for i in range(len(self.matrix)):
             if self.matrix[i][self.column] == data:
                 return ApiManager.link_style(
-                    text=str(data),
+                    text=str(text),
                     table_id=self.table_id,
                     sheet_id=self.sheet_id,
                     column=self.column,
                     row=i)
-        return None
+            elif self.matrix[i][self.column] != "" and str(data).__contains__(self.matrix[i][self.column]):
+                sub_target = ApiManager.link_style(
+                    text=str(text),
+                    table_id=self.table_id,
+                    sheet_id=self.sheet_id,
+                    column=self.column,
+                    row=i)
+        return sub_target
 
 
 class UnitStyle:
@@ -48,15 +61,23 @@ class UnitStyle:
                 param_cite = sort.layout.load.index_json['unit_style']['cite']
             except:
                 continue
+            param_cite_redirect = {}
+            try:
+                param_cite_redirect = sort.layout.load.index_json['unit_style']['cite_redirect']
+            except:
+                pass
             for key, value in param_cite.items():
                 cites = self.find_link_column(value)
                 index = sort.layout.head_index(key)
                 for i in range(len(sort.layout.matrix[1:])):
                     i = i + 1
                     for cite in cites:
-                        link = cite.link_style(sort.layout.matrix[i][index])
+                        redirect_index = index
+                        if param_cite_redirect.keys().__contains__(key):
+                            redirect_index = sort.layout.head_index(param_cite_redirect[key])
+                        link = cite.link_style(sort.layout.matrix[i][index], sort.layout.matrix[i][redirect_index])
                         if link is not None:
-                            sort.layout.matrix[i][index] = link
+                            sort.layout.matrix[i][redirect_index] = link
                             break
 
     # index_name, head_name

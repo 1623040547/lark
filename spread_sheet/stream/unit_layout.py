@@ -61,7 +61,7 @@ class UnitLayout:
                     heads_redirect.append(k1)
                     self.heads_name.append(v1)
                 self.heads.append(k)
-                self.heads_redirect = {k: heads_redirect}
+                self.heads_redirect[k] = heads_redirect
             else:
                 raise
 

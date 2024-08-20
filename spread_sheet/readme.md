@@ -155,7 +155,12 @@ json = {
         "@param_index:param_name",
         "@union_param_index:param_name"
       ]
-    } 
+    },
+    # 引用重定向，将在`param_name`上生效的超链接转移到`param_type`上
+    # 而判断是否具备引用关系时，仍使用`param_name`进行判断
+    "cite_redirect": {
+      "param_name": "param_type"
+    }
   },
   # 全局样式
   "global_style": {
